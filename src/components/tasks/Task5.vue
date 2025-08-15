@@ -1,7 +1,7 @@
 <template>
   <div class="min-h-screen flex flex-col bg-gradient-to-br from-gray-50 to-gray-100 p-6">
     <!-- Title -->
-    <h1 class="text-2xl font-bold text-gray-800 mb-6 text-center">🔍 جستجوی کاربر</h1>
+    <h1 style="margin-bottom: 15px;" class="text-2xl font-bold text-gray-800 mb-6 text-center">🔍 جستجوی کاربر</h1>
 
     <!-- Content Area -->
     <div class="flex-grow flex flex-col items-center">
