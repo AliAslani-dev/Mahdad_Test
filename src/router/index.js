@@ -24,6 +24,11 @@ const router = createRouter({
           name: "task1",
           component: () => import("../views/Task1UserPrefrences.vue"),
         },
+        {
+          path: "/task2",
+          name: "task2",
+          component: () => import("../views/Task2Ecommerce.vue"),
+        },
       ],
     },
     {
