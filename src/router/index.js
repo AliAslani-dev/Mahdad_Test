@@ -19,6 +19,11 @@ const router = createRouter({
           name: "task4",
           component: () => import("../views/Task4ScrollLoader.vue"),
         },
+         {
+          path: "/task1",
+          name: "task1",
+          component: () => import("../views/Task1UserPrefrences.vue"),
+        },
       ],
     },
     {
