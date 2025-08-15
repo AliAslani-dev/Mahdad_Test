@@ -1,10 +1,11 @@
 @import './base.css';
 
 #app {
-  max-width: 1280px;
+  width: 100%;
+  max-width: 1920px;
+  /* wider for large monitors */
   margin: 0 auto;
   padding: 2rem;
-  font-weight: normal;
 }
 
 a,
@@ -27,9 +28,5 @@ a,
     place-items: center;
   }
 
-  #app {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    padding: 0 2rem;
-  }
+
 }
