@@ -9,6 +9,11 @@ const router = createRouter({
       path: "/",
       component: DefaoultLayout,
       children: [
+         {
+          path: "",
+          name: "home",
+          component: () => import("../views/HomeView.vue"),
+        },
         {
           path: "/task5",
           name: "task5",
@@ -41,13 +46,13 @@ const router = createRouter({
       name: "layout",
       component: LayoutTask,
 
-      children : [
+      children: [
         {
           path: "",
           name: "task6",
           component: () => import("../views/Task6LayoutContent.vue"),
         },
-      ]
+      ],
     },
   ],
 });

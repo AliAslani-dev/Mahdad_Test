@@ -1,94 +1,87 @@
 <script setup>
-import WelcomeItem from './WelcomeItem.vue'
-import DocumentationIcon from './icons/IconDocumentation.vue'
-import ToolingIcon from './icons/IconTooling.vue'
-import EcosystemIcon from './icons/IconEcosystem.vue'
-import CommunityIcon from './icons/IconCommunity.vue'
-import SupportIcon from './icons/IconSupport.vue'
+import WelcomeItem from "./WelcomeItem.vue";
+import { ref, onMounted } from "vue";
 
-const openReadmeInEditor = () => fetch('/__open-in-editor?file=README.md')
+const tasks = [
+  {
+    id: 1,
+    name: "Task 1: Personalized Dashboard",
+    description: `Build a dashboard where users can set preferences like theme ("light" or "dark") and font size. The settings should persist across page reloads using localStorage.`,
+  },
+  {
+    id: 2,
+    name: "Task 2: E-commerce Cart Management",
+    description: `Manage a multi-page e-commerce cart. Ensure data persists across pages, updates are instant, and recommend products based on similar customers.`,
+  },
+  {
+    id: 3,
+    name: "Task 3: Stock Market Dashboard",
+    description: `Implement a circuit breaker for stock market API requests. Stop requests after 3 failures, retry after 1 minute, and notify users when the service is unavailable.`,
+  },
+  {
+    id: 4,
+    name: "Task 4: Virtual Scrolling for Logs",
+    description: `Optimize rendering of 10,000+ user activity logs using virtual scrolling. Support dynamic row heights and smooth infinite scrolling without performance issues.`,
+  },
+  {
+    id: 5,
+    name: "Task 5: Latest User API Fetch",
+    description: `Fetch user data based on userId. Only the latest request counts, cache results per userId, and display data on the page.`,
+  },
+  {
+    id: 6,
+    name: "Task 6: Expandable Layout with Tailwind",
+    description: `Create a page layout with a fixed header and footer, and a content area that can grow and scroll when content exceeds available space.`,
+  },
+  {
+    id: 7,
+    name: "Task 7: Flexible Row Layout with Tailwind",
+    description: `Design a row layout with fixed-width items 1 & 2 and a flexible item 3 that grows based on available space.`,
+  },
+];
+
+const visibleTasks = ref([]);
+onMounted(() => {
+  tasks.forEach((_, index) => {
+    setTimeout(() => {
+      visibleTasks.value.push(tasks[index]);
+    }, index * 150);
+  });
+});
 </script>
 
 <template>
-  <WelcomeItem>
-    <template #icon>
-      <DocumentationIcon />
-    </template>
-    <template #heading>Documentation</template>
-
-    Vue’s
-    <a href="https://vuejs.org/" target="_blank" rel="noopener">official documentation</a>
-    provides you with all information you need to get started.
-  </WelcomeItem>
-
-  <WelcomeItem>
-    <template #icon>
-      <ToolingIcon />
-    </template>
-    <template #heading>Tooling</template>
-
-    This project is served and bundled with
-    <a href="https://vite.dev/guide/features.html" target="_blank" rel="noopener">Vite</a>. The
-    recommended IDE setup is
-    <a href="https://code.visualstudio.com/" target="_blank" rel="noopener">VSCode</a>
-    +
-    <a href="https://github.com/vuejs/language-tools" target="_blank" rel="noopener">Vue - Official</a>. If
-    you need to test your components and web pages, check out
-    <a href="https://vitest.dev/" target="_blank" rel="noopener">Vitest</a>
-    and
-    <a href="https://www.cypress.io/" target="_blank" rel="noopener">Cypress</a>
-    /
-    <a href="https://playwright.dev/" target="_blank" rel="noopener">Playwright</a>.
-
-    <br />
-
-    More instructions are available in
-    <a href="javascript:void(0)" @click="openReadmeInEditor"><code>README.md</code></a
-    >.
-  </WelcomeItem>
-
-  <WelcomeItem>
-    <template #icon>
-      <EcosystemIcon />
-    </template>
-    <template #heading>Ecosystem</template>
-
-    Get official tools and libraries for your project:
-    <a href="https://pinia.vuejs.org/" target="_blank" rel="noopener">Pinia</a>,
-    <a href="https://router.vuejs.org/" target="_blank" rel="noopener">Vue Router</a>,
-    <a href="https://test-utils.vuejs.org/" target="_blank" rel="noopener">Vue Test Utils</a>, and
-    <a href="https://github.com/vuejs/devtools" target="_blank" rel="noopener">Vue Dev Tools</a>. If
-    you need more resources, we suggest paying
-    <a href="https://github.com/vuejs/awesome-vue" target="_blank" rel="noopener">Awesome Vue</a>
-    a visit.
-  </WelcomeItem>
-
-  <WelcomeItem>
-    <template #icon>
-      <CommunityIcon />
-    </template>
-    <template #heading>Community</template>
-
-    Got stuck? Ask your question on
-    <a href="https://chat.vuejs.org" target="_blank" rel="noopener">Vue Land</a>
-    (our official Discord server), or
-    <a href="https://stackoverflow.com/questions/tagged/vue.js" target="_blank" rel="noopener"
-      >StackOverflow</a
-    >. You should also follow the official
-    <a href="https://bsky.app/profile/vuejs.org" target="_blank" rel="noopener">@vuejs.org</a>
-    Bluesky account or the
-    <a href="https://x.com/vuejs" target="_blank" rel="noopener">@vuejs</a>
-    X account for latest news in the Vue world.
-  </WelcomeItem>
-
-  <WelcomeItem>
-    <template #icon>
-      <SupportIcon />
-    </template>
-    <template #heading>Support Vue</template>
-
-    As an independent project, Vue relies on community backing for its sustainability. You can help
-    us by
-    <a href="https://vuejs.org/sponsor/" target="_blank" rel="noopener">becoming a sponsor</a>.
-  </WelcomeItem>
+  <div
+    class="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-100 to-gray-200 p-6"
+  >
+    <div class="w-full max-w-2xl space-y-6">
+      <transition-group name="fade-slide" tag="div">
+        <WelcomeItem
+          v-for="task in visibleTasks"
+          :key="task.id"
+          class="bg-white p-6 rounded-2xl shadow-lg transform transition-all duration-300 hover:scale-105 hover:shadow-2xl"
+          style="margin-bottom: 10px"
+        >
+          <template #heading>
+            <h2 class="text-xl font-bold text-gray-800">{{ task.name }}</h2>
+          </template>
+          <p class="mt-2 text-gray-600 leading-relaxed">{{ task.description }}</p>
+        </WelcomeItem>
+      </transition-group>
+    </div>
+  </div>
 </template>
+
+<style scoped>
+.fade-slide-enter-from {
+  opacity: 0;
+  transform: translateY(20px);
+}
+.fade-slide-enter-active {
+  transition: all 0.5s ease;
+}
+.fade-slide-enter-to {
+  opacity: 1;
+  transform: translateY(0);
+}
+</style>

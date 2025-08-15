@@ -4,14 +4,17 @@
     <header class="bg-white shadow-lg w-full">
       <nav class="flex items-center justify-between px-8 py-4 w-full">
         <!-- Logo -->
-        <div class="text-2xl font-extrabold text-indigo-600 tracking-wide">MyBrand</div>
+        <div class="text-2xl font-extrabold text-indigo-600 tracking-wide">Mahdad Code Challenge</div>
 
         <!-- Links -->
         <div class="flex items-center gap-8">
-          <a href="#" class="text-gray-700 hover:text-indigo-600 transition">خانه</a>
-          <a href="#" class="text-gray-700 hover:text-indigo-600 transition">درباره ما</a>
-          <a href="#" class="text-gray-700 hover:text-indigo-600 transition">خدمات</a>
-          <a href="#" class="text-gray-700 hover:text-indigo-600 transition">تماس با ما</a>
+          <a href="" class="text-gray-700 hover:text-indigo-600 transition">Home</a>
+          <a href="/task1" class="text-gray-700 hover:text-indigo-600 transition">Task1</a>
+          <a href="/task2" class="text-gray-700 hover:text-indigo-600 transition">Task2</a>
+          <a href="/task3" class="text-gray-700 hover:text-indigo-600 transition">Task3</a>
+          <a href="/task4" class="text-gray-700 hover:text-indigo-600 transition">Task4</a>
+          <a href="/task5" class="text-gray-700 hover:text-indigo-600 transition">Task5</a>
+          <a href="/layout" class="text-gray-700 hover:text-indigo-600 transition">Task6</a>
         </div>
       </nav>
     </header>
@@ -28,7 +31,7 @@
       >
         <!-- Left: copyright -->
         <p class="text-sm sm:text-base">
-          &copy; 2025 <span class="font-semibold">MyBrand</span>. تمام حقوق محفوظ است.
+          &copy; 2025 <span class="font-semibold">Mahdad</span>.نوشته شده توسط علی اصلانی
         </p>
 
         <!-- Right: links -->
