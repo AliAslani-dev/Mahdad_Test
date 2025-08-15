@@ -39,6 +39,11 @@ const router = createRouter({
           name: "task3",
           component: () => import("../views/Task3CircuiteBreaker.vue"),
         },
+         {
+          path: "/task7",
+          name: "task7",
+          component: () => import("../views/Task7FlexLayout.vue"),
+        },
       ],
     },
     {

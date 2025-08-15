@@ -4,7 +4,9 @@
     <header class="bg-white shadow-lg w-full">
       <nav class="flex items-center justify-between px-8 py-4 w-full">
         <!-- Logo -->
-        <div class="text-2xl font-extrabold text-indigo-600 tracking-wide">Mahdad Code Challenge</div>
+        <div class="text-2xl font-extrabold text-indigo-600 tracking-wide">
+          Mahdad Code Challenge
+        </div>
 
         <!-- Links -->
         <div class="flex items-center gap-8">
@@ -15,6 +17,7 @@
           <a href="/task4" class="text-gray-700 hover:text-indigo-600 transition">Task4</a>
           <a href="/task5" class="text-gray-700 hover:text-indigo-600 transition">Task5</a>
           <a href="/layout" class="text-gray-700 hover:text-indigo-600 transition">Task6</a>
+          <a href="/task7" class="text-gray-700 hover:text-indigo-600 transition">Task7</a>
         </div>
       </nav>
     </header>
