@@ -1,25 +1,33 @@
 <template>
-  <div class="min-h-screen bg-gray-100 p-6">
-    <h1 class="text-2xl font-bold mb-4">Random Users</h1>
+  <div class="min-h-screen bg-gray-100 p-6 flex flex-col">
+  
 
-    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+    <div class="min-h-screen bg-gray-100 p-6 flex flex-col">
+      <!-- Scrollable container -->
       <div
-        v-for="(user, index) in users"
-        :key="index"
-        class="bg-white shadow-md rounded-lg p-4 flex flex-col items-center"
+        ref="scrollContainer"
+        class="overflow-y-auto bg-white p-4 rounded-lg shadow-md"
+        style="height: calc(100vh - 100px); scroll-behavior: smooth"
       >
-        <img :src="user.picture.large" alt="User Avatar" class="w-24 h-24 rounded-full mb-2" />
-        <p class="font-semibold">{{ user.name.first }} {{ user.name.last }}</p>
-        <p class="text-sm text-gray-500">{{ user.email }}</p>
-      </div>
-    </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+          <div
+            v-for="(user, index) in users"
+            :key="index"
+            class="bg-gray-50 shadow rounded-lg p-4 flex flex-col items-center fade-in"
+          >
+            <img :src="user.picture.large" class="w-24 h-24 rounded-full mb-2" />
+            <p class="font-semibold text-center">{{ user.name.first }} {{ user.name.last }}</p>
+            <p class="text-sm text-gray-500 text-center">{{ user.email }}</p>
+          </div>
+        </div>
 
-    <!-- Scroll sentinel / loader -->
-    <div ref="sential" class="flex justify-center py-6">
-      <div
-        v-if="loading"
-        class="loader ease-linear rounded-full border-4 border-t-4 border-gray-200 h-10 w-10"
-      ></div>
+        <div ref="sential" class="flex justify-center py-6">
+          <div
+            v-if="loading"
+            class="loader ease-linear rounded-full border-4 border-t-4 border-gray-200 h-10 w-10"
+          ></div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -27,22 +35,23 @@
 <script setup>
 import { ref, onMounted } from "vue";
 import axios from "axios";
+
 const users = ref([]);
 const page = ref(1);
 const loading = ref(false);
 const sential = ref(null);
+const scrollContainer = ref(null);
 
 const fetchUsers = async () => {
   if (loading.value) return;
 
   loading.value = true;
   try {
-    const response = await axios.get(`https://randomuser.me/api/?results=10&page=${page.value}`);
+    const response = await axios.get(`https://randomuser.me/api/?results=25&page=${page.value}`);
     users.value.push(...response?.data?.results);
     page.value++;
   } catch (error) {
     console.log(error);
-    loading.value = false;
   } finally {
     loading.value = false;
   }
@@ -55,14 +64,14 @@ onMounted(() => {
     (entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
-          fetchUsers(); // call your function when the element is visible
+          fetchUsers();
         }
       });
     },
     {
-      root: null, // the element used as the viewport for checking visibility. null = browser viewport
-      rootMargin: "0px", // margin around the root. e.g., "0px 0px 100px 0px" to trigger earlier
-      threshold: 0.1, // percentage of the target’s visibility to trigger the callback (0 = any part visible, 1 = fully visible)
+      root: null,
+      rootMargin: "0px",
+      threshold: 0.1,
     }
   );
 
@@ -72,4 +81,25 @@ onMounted(() => {
 });
 </script>
 
-<style lang="scss" scoped></style>
+<style scoped>
+.loader {
+  border-top-color: #3490dc; /* Tailwind indigo-500 */
+  animation: spin 1s linear infinite;
+}
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Simple fade-in for cards without changing layout */
+.fade-in {
+  opacity: 0;
+  animation: fadeInAnim 0.5s forwards;
+}
+@keyframes fadeInAnim {
+  to {
+    opacity: 1;
+  }
+}
+</style>
