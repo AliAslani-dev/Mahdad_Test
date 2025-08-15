@@ -14,6 +14,11 @@ const router = createRouter({
           name: "task5",
           component: () => import("../views/Task5UserApiFetch.vue"),
         },
+        {
+          path: "/task4",
+          name: "task4",
+          component: () => import("../views/Task4ScrollLoader.vue"),
+        },
       ],
     },
     {
